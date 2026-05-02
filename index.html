@@ -554,5 +554,32 @@
         };
     })();
     </script>
+    <!-- ========================================== -->
+    <!-- TITAN PROTOCOL: ESCUDO ANTI-INSPEÇÃO       -->
+    <!-- ========================================== -->
+    <script>
+    (() => {
+        // 1. Bloqueia o Botão Direito (Menu de Contexto)
+        document.addEventListener('contextmenu', e => e.preventDefault());
+
+        // 2. Bloqueia Atalhos de Teclado (F12, Ctrl+U, Ctrl+Shift+I/J/C, Ctrl+S)
+        document.addEventListener('keydown', e => {
+            if (
+                e.key === 'F12' || 
+                (e.ctrlKey && e.key.toLowerCase() === 'u') || 
+                (e.ctrlKey && e.shiftKey && ['i', 'j', 'c'].includes(e.key.toLowerCase())) ||
+                (e.ctrlKey && e.key.toLowerCase() === 's')
+            ) {
+                e.preventDefault();
+                console.warn("🛡️ [TITAN SEC] Acesso restrito. Matriz protegida.");
+                return false;
+            }
+        });
+
+        // 3. Bloqueia Seleção de Texto e Arrastar Elementos (Copiar/Colar)
+        document.addEventListener('selectstart', e => e.preventDefault());
+        document.addEventListener('dragstart', e => e.preventDefault());
+    })();
+    </script>
 </body>
 </html>
